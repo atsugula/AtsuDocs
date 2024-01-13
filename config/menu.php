@@ -8,6 +8,24 @@ return [
         'page' => 0, // Para saber si la ruta es por parametro post o no
     ],
     [
+        'text' => 'Projects',
+        'route' => 'projects.index',
+        'icon' => 'ni ni-folder-17',
+        'page' => 0, // Para saber si la ruta es por parametro post o no
+    ],
+    [
+        'text' => 'modules',
+        'route' => 'modules.index',
+        'icon' => 'fa fa-cubes',
+        'page' => 0, // Para saber si la ruta es por parametro post o no
+    ],
+    [
+        'text' => 'notes',
+        'route' => 'notes.index',
+        'icon' => 'ni ni-single-copy-04',
+        'page' => 0, // Para saber si la ruta es por parametro post o no
+    ],
+    /* [
         'text' => 'User Management',
         'route' => 'user-management',
         'icon' => 'ni ni-calendar-grid-58',
@@ -48,5 +66,5 @@ return [
         'route' => 'sign-up-static',
         'icon' => 'ni ni-collection',
         'page' => 0, // Para saber si la ruta es por parametro post o no
-    ],
+    ], */
 ];

@@ -17,14 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ResetPassword;
-use App\Http\Controllers\ChangePassword;            
-            
+use App\Http\Controllers\V1\LabelController;
+use App\Http\Controllers\V1\ModuleController;
+use App\Http\Controllers\V1\NoteController;
+use App\Http\Controllers\V1\ProjectController;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -37,6 +40,13 @@ Route::get('/', function () {return redirect('/dashboard');})->middleware('auth'
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
+
+	/* MODULES SOFTWARE */
+	Route::resource('projects', ProjectController::class)->names('projects');
+	Route::resource('modules', ModuleController::class)->names('modules');
+	Route::resource('labels', LabelController::class)->names('labels');
+	Route::resource('notes', NoteController::class)->names('notes');
+
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
