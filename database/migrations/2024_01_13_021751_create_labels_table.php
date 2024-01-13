@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('labels', function (Blueprint $table) {
             $table->id();
-            $table->text('file')->nullable();
+            $table->string('name', 91);
+            $table->string('color', 8);
             $table->text('description')->nullable();
-
-            $table->unsignedBigInteger('module_id');
-            $table->foreign('module_id')->references('id')->on('modules');
 
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');
-            
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('labels');
     }
 };
